@@ -39,6 +39,7 @@
             this.lblUnitInformation = new System.Windows.Forms.Label();
             this.btnLoadGame = new System.Windows.Forms.Button();
             this.btnSaveGame = new System.Windows.Forms.Button();
+            this.lblTimer = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // rtbMap
@@ -109,9 +110,9 @@
             // lblUnitInformation
             // 
             this.lblUnitInformation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblUnitInformation.Location = new System.Drawing.Point(568, 45);
+            this.lblUnitInformation.Location = new System.Drawing.Point(568, 66);
             this.lblUnitInformation.Name = "lblUnitInformation";
-            this.lblUnitInformation.Size = new System.Drawing.Size(229, 316);
+            this.lblUnitInformation.Size = new System.Drawing.Size(444, 324);
             this.lblUnitInformation.TabIndex = 2;
             // 
             // btnLoadGame
@@ -142,11 +143,20 @@
             this.btnSaveGame.UseVisualStyleBackColor = true;
             this.btnSaveGame.Click += new System.EventHandler(this.btnSaveGame_Click);
             // 
+            // lblTimer
+            // 
+            this.lblTimer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTimer.Location = new System.Drawing.Point(571, 9);
+            this.lblTimer.Name = "lblTimer";
+            this.lblTimer.Size = new System.Drawing.Size(441, 43);
+            this.lblTimer.TabIndex = 5;
+            // 
             // RTSGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 517);
+            this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.btnSaveGame);
             this.Controls.Add(this.btnLoadGame);
             this.Controls.Add(this.lblUnitInformation);
@@ -173,6 +183,7 @@
         private System.Windows.Forms.Label lblUnitInformation;
         private System.Windows.Forms.Button btnLoadGame;
         private System.Windows.Forms.Button btnSaveGame;
+        private System.Windows.Forms.Label lblTimer;
     }
 }
 

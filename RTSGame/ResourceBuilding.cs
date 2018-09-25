@@ -10,10 +10,12 @@ namespace RTSGame
 {
     class ResourceBuilding : Building
     {
-
+        #region Variables
         private int availableResources;
         private const int RESOURCESTOMAKE = 5;
+        #endregion
 
+        #region Constructor & Methods
         public ResourceBuilding(int x, int y, int health, string faction, string symbol) : base(x,y,health,faction,symbol)
         {
         }
@@ -85,5 +87,6 @@ namespace RTSGame
                 }
             }
         }
+        #endregion
     }
 }

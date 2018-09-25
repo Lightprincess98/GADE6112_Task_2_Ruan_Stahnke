@@ -149,7 +149,7 @@ namespace RTSGame
             }
         }
 
-
+        //Checks the health of all the units and remove them from list if needed.
         public void checkHealth()
         {
             for (int i = 0; i < unitsOnMapNum; i++)
@@ -160,7 +160,6 @@ namespace RTSGame
                     unitsOnMapNum--;
                 }
         }
-        #endregion
 
         public void loadMeleeUnits()
         {
@@ -192,7 +191,7 @@ namespace RTSGame
                     randomAttackRange = int.Parse(reader.ReadLine());
                     team = reader.ReadLine();
                     symbol = reader.ReadLine();
-                    MeleeUnit m = new MeleeUnit(name,x,y,health,uSpeed,attackOption,randomAttackRange,team,symbol);
+                    MeleeUnit m = new MeleeUnit(name, x, y, health, uSpeed, attackOption, randomAttackRange, team, symbol);
                     unitsOnMap.Add(m);
                     grid[x, y] = symbol;
                     unitsOnMapNum++;
@@ -248,7 +247,7 @@ namespace RTSGame
                     RangedUnit m = new RangedUnit(name, x, y, health, uSpeed, attackOption, randomAttackRange, team,
                         symbol);
                     unitsOnMap.Add(m);
-                    grid[x,y] = symbol;
+                    grid[x, y] = symbol;
                     unitsOnMapNum++;
                     input = reader.ReadLine(); // secondary read
                 }
@@ -271,49 +270,49 @@ namespace RTSGame
         }
 
         public void loadFactory()
+        {
+            FileStream inFile = null;
+            StreamReader reader = null;
+            string input;
+            int x;
+            int y;
+            int health;
+            string team;
+            string symbol;
+            try
             {
-                FileStream inFile = null;
-                StreamReader reader = null;
-                string input;
-                int x;
-                int y;
-                int health;
-                string team;
-                string symbol;
-                try
+                inFile = new FileStream(@"SaveGame\FactoryBuilding.txt", FileMode.Open, FileAccess.Read);
+                reader = new StreamReader(inFile);
+                input = reader.ReadLine();      // priming read
+                while (input != null)
                 {
-                    inFile = new FileStream(@"SaveGame\FactoryBuilding.txt", FileMode.Open, FileAccess.Read);
-                    reader = new StreamReader(inFile);
-                    input = reader.ReadLine();      // priming read
-                    while (input != null)
-                    {
-                        x = int.Parse(input);
-                        y = int.Parse(reader.ReadLine());
-                        health = int.Parse(reader.ReadLine());
-                        team = reader.ReadLine();
-                        symbol = reader.ReadLine();
-                        FactoryBuilding f = new FactoryBuilding(x,y,health,team,symbol);
-                        buildingsOnMap.Add(f);
-                        grid[x, y] = symbol;
+                    x = int.Parse(input);
+                    y = int.Parse(reader.ReadLine());
+                    health = int.Parse(reader.ReadLine());
+                    team = reader.ReadLine();
+                    symbol = reader.ReadLine();
+                    FactoryBuilding f = new FactoryBuilding(x, y, health, team, symbol);
+                    buildingsOnMap.Add(f);
+                    grid[x, y] = symbol;
                     buildingsOnMapNum++;
-                        input = reader.ReadLine();      // secondary read
-                    }
+                    input = reader.ReadLine();      // secondary read
+                }
+                reader.Close();
+                inFile.Close();
+            }
+            catch (Exception fe)
+            {
+                Debug.WriteLine(fe.Message);
+            }
+            finally
+            {
+                if (inFile != null)
+                {
                     reader.Close();
                     inFile.Close();
                 }
-                catch (Exception fe)
-                {
-                    Debug.WriteLine(fe.Message);
-                }
-                finally
-                {
-                    if (inFile != null)
-                    {
-                        reader.Close();
-                        inFile.Close();
-                    }
-                }
             }
+        }
 
         public void loadResource()
         {
@@ -339,7 +338,7 @@ namespace RTSGame
                     symbol = reader.ReadLine();
                     ResourceBuilding f = new ResourceBuilding(x, y, health, team, symbol);
                     buildingsOnMap.Add(f);
-                    grid[x,y] = symbol;
+                    grid[x, y] = symbol;
                     buildingsOnMapNum++;
                     input = reader.ReadLine();      // secondary read
                 }
@@ -359,5 +358,6 @@ namespace RTSGame
                 }
             }
         }
+        #endregion  
     }
 }

@@ -13,9 +13,14 @@ namespace RTSGame
 
     public partial class RTSGame : Form
     {
-        GameEngine gameEngine = new GameEngine();
+        #region Variables
+        int seconds = 0;
+        int minutes = 0;
         private bool loaded;
+        GameEngine gameEngine = new GameEngine();
+        #endregion
 
+        #region Methods
         public RTSGame()
         {
             InitializeComponent();
@@ -36,6 +41,8 @@ namespace RTSGame
 
         private void tmrGameTimer_Tick(object sender, EventArgs e)
         {
+            seconds++;
+            lblTimer.Text = TimeSpan.FromSeconds(seconds).ToString("mm\\:ss");
             gameEngine.Combat();
             rtbMap.Text = "";
             for (int i = 0; i < gameEngine.Map.Grid.GetLength(0); i++)
@@ -64,6 +71,25 @@ namespace RTSGame
         private void rtbMap_MouseClick(object sender, MouseEventArgs e)
         {
             lblUnitInformation.Text = "";
+
+            int mouseX = MousePosition.X;
+            int mouseY = MousePosition.Y;
+
+            int formX = this.Location.X;
+            int formY = this.Location.Y;
+
+            int y = (mouseX - formX - 44) / 18;
+            int x = (mouseY - formY - 74) / 17;
+
+            x = x + 1;
+
+            foreach (Unit u in gameEngine.Map.UnitsonMap)
+            {
+                if (u.X == x && u.Y == y)
+                {
+                    lblUnitInformation.Text += u.toString();
+                }
+            }
         }
 
         private void btnSaveGame_Click(object sender, EventArgs e)
@@ -101,5 +127,6 @@ namespace RTSGame
                 rtbMap.Text += Environment.NewLine;
             }
         }
+        #endregion
     }
 }
