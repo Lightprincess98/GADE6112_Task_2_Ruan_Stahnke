@@ -63,6 +63,7 @@ namespace RTSGame
             }
         }
 
+        //Places all the units on the Map.
         public void SetUnits()
         {
             Random rnd = new Random();
